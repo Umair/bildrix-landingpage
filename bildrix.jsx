@@ -581,26 +581,26 @@ function HowItWorks() {
   );
 }
 
-// ─── TESTIMONIALS ───────────────────────────────────────────────
-function Testimonials() {
+// ─── PLATFORM HIGHLIGHTS ────────────────────────────────────────
+function PlatformHighlights() {
   const [ref, vis] = useReveal(0.15);
   const items = [
-    { quote: "Bildrix cut our estimating from 3 days down to 20 minutes. We're bidding on projects we never had capacity for before.", name: "Marcus Chen", title: "Owner, Apex Builders" },
-    { quote: "The AI caught measurement discrepancies that three experienced estimators missed. Saved us $40K on a single project.", name: "Sarah Okafor", title: "Lead Estimator, Meridian Construction" },
-    { quote: "Went from site visit to a winning $240K bid in under 2 hours. The proposals look better than what our old firm produced.", name: "James Whitfield", title: "Whitfield Remodeling" },
+    { title: "Blueprint intelligence", desc: "Auto-detects rooms, assemblies, and takeoff quantities with audit-ready traceability." },
+    { title: "Live cost engine", desc: "Pulls supplier pricing and historical bids to keep every estimate current." },
+    { title: "Proposal-ready output", desc: "Exports branded proposals and clean spreadsheets in a single click." },
   ];
   return (
     <section ref={ref} style={{ maxWidth: 1180, margin: "0 auto", padding: "100px 32px" }}>
       <p style={{
         fontFamily: FONT, fontSize: 13, fontWeight: 600, color: C.accent,
         letterSpacing: "0.02em", margin: "0 0 12px",
-      }}>What builders say</p>
+      }}>Built for modern builders</p>
       <h2 style={{
         fontFamily: HEADING, fontSize: "clamp(28px, 4vw, 40px)",
         fontWeight: 700, letterSpacing: "-0.03em", color: C.text,
         margin: "0 0 48px", lineHeight: 1.15,
       }}>
-        Trusted by contractors who build.
+        Everything you need to win faster.
       </h2>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
         {items.map((t, i) => (
@@ -610,19 +610,17 @@ function Testimonials() {
             transition: `all 0.5s cubic-bezier(.22,1,.36,1) ${i * 0.08}s`,
             padding: "28px 24px", borderRadius: 14,
             border: `1px solid ${C.border}`, background: C.surface,
-            display: "flex", flexDirection: "column",
           }}>
+            <h3 style={{
+              fontFamily: HEADING, fontSize: 17, fontWeight: 600,
+              letterSpacing: "-0.02em", color: C.text,
+              margin: "0 0 10px",
+            }}>{t.title}</h3>
             <p style={{
-              fontFamily: FONT, fontSize: 14.5, fontWeight: 400,
-              color: C.text, lineHeight: 1.6, letterSpacing: "-0.01em",
-              margin: "0 0 24px", flex: 1,
-            }}>
-              "{t.quote}"
-            </p>
-            <div>
-              <div style={{ fontFamily: FONT, fontSize: 14, fontWeight: 650, color: C.text }}>{t.name}</div>
-              <div style={{ fontFamily: FONT, fontSize: 12.5, color: C.subtle, marginTop: 2 }}>{t.title}</div>
-            </div>
+              fontFamily: FONT, fontSize: 13.5, fontWeight: 400,
+              color: C.muted, lineHeight: 1.55, letterSpacing: "-0.01em",
+              margin: 0,
+            }}>{t.desc}</p>
           </div>
         ))}
       </div>
@@ -752,7 +750,7 @@ export default function Bildrix() {
       <Metrics />
       <Product />
       <HowItWorks />
-      <Testimonials />
+      <PlatformHighlights />
       <CTA />
       <Footer />
     </div>
