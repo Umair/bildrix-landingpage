@@ -110,7 +110,7 @@ function Nav() {
               onMouseLeave={e => e.target.style.color = C.muted}
             >{t}</a>
           ))}
-          <a href="#cta" style={{
+          <a href="https://calendly.com/umairjz/30min" target="_blank" rel="noopener noreferrer" style={{
             textDecoration: "none", fontFamily: FONT,
             fontSize: 14, fontWeight: 600, letterSpacing: "-0.01em",
             color: "#fff", background: C.dark,
@@ -189,7 +189,7 @@ function Hero() {
         transition: "all 0.7s cubic-bezier(.22,1,.36,1) 0.24s",
         display: "flex", gap: 12, marginTop: 36, flexWrap: "wrap", alignItems: "center",
       }}>
-        <a href="#cta" style={{
+        <a href="https://calendly.com/umairjz/30min" target="_blank" rel="noopener noreferrer" style={{
           textDecoration: "none", fontFamily: FONT,
           fontSize: 15, fontWeight: 600, letterSpacing: "-0.01em",
           color: "#fff", background: C.accent,
@@ -201,7 +201,7 @@ function Hero() {
           onMouseEnter={e => { e.target.style.background = C.accentHover; e.target.style.boxShadow = "0 4px 16px rgba(45,91,255,0.3)"; e.target.style.transform = "translateY(-1px)"; }}
           onMouseLeave={e => { e.target.style.background = C.accent; e.target.style.boxShadow = "0 2px 8px rgba(45,91,255,0.2)"; e.target.style.transform = "translateY(0)"; }}
         >
-          Upload your plans →
+          Book a demo →
         </a>
         <a href="#how-it-works" style={{
           textDecoration: "none", fontFamily: FONT,
@@ -684,7 +684,7 @@ function CTA() {
           Upload your first blueprint and see what Bildrix finds. No credit card, no onboarding call.
         </p>
         <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-          <a href="#" style={{
+          <a href="https://calendly.com/umairjz/30min" target="_blank" rel="noopener noreferrer" style={{
             textDecoration: "none", fontFamily: FONT,
             fontSize: 15, fontWeight: 600, letterSpacing: "-0.01em",
             color: C.dark, background: "#fff",
@@ -694,19 +694,6 @@ function CTA() {
           }}
             onMouseEnter={e => { e.target.style.background = "#F0F0F0"; e.target.style.transform = "translateY(-1px)"; }}
             onMouseLeave={e => { e.target.style.background = "#fff"; e.target.style.transform = "translateY(0)"; }}
-          >
-            Upload your plans →
-          </a>
-          <a href="#" style={{
-            textDecoration: "none", fontFamily: FONT,
-            fontSize: 15, fontWeight: 500, letterSpacing: "-0.01em",
-            color: "rgba(255,255,255,0.7)",
-            padding: "13px 24px", borderRadius: 10,
-            border: "1px solid rgba(255,255,255,0.15)",
-            transition: "all 0.2s",
-          }}
-            onMouseEnter={e => { e.target.style.color = "#fff"; e.target.style.borderColor = "rgba(255,255,255,0.3)"; }}
-            onMouseLeave={e => { e.target.style.color = "rgba(255,255,255,0.7)"; e.target.style.borderColor = "rgba(255,255,255,0.15)"; }}
           >
             Book a demo
           </a>
