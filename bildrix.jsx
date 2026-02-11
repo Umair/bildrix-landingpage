@@ -1,4 +1,7 @@
 import { useState, useEffect, useRef } from "react";
+import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
+import { articles } from "./src/articles/articles.js";
 
 /* ═══════════════════════════════════════════════════════════════
    BILDRIX — AI Construction Intelligence Platform
@@ -110,6 +113,10 @@ function Nav() {
               onMouseLeave={e => e.target.style.color = C.muted}
             >{t}</a>
           ))}
+          <a href="#blog" style={linkStyle}
+            onMouseEnter={e => e.target.style.color = C.text}
+            onMouseLeave={e => e.target.style.color = C.muted}
+          >Blog</a>
           <a href="https://calendly.com/umairjz/30min" target="_blank" rel="noopener noreferrer" style={{
             textDecoration: "none", fontFamily: FONT,
             fontSize: 14, fontWeight: 600, letterSpacing: "-0.01em",
@@ -774,8 +781,8 @@ function Footer() {
           Bildrix
         </span>
         <div style={{ display: "flex", gap: 28 }}>
-          {["Product", "About", "Privacy", "Terms"].map((t) => (
-            <a key={t} href="#" style={{
+          {["Product", "About", "Blog", "Privacy", "Terms"].map((t) => (
+            <a key={t} href={t === "Blog" ? "#blog" : "#"} style={{
               textDecoration: "none", fontFamily: FONT,
               fontSize: 12.5, fontWeight: 450, color: C.subtle,
               letterSpacing: "-0.01em", transition: "color 0.2s",
@@ -797,9 +804,100 @@ function Footer() {
 }
 
 // ─── ROOT ───────────────────────────────────────────────────────
+// ─── BLOG SECTION ───────────────────────────────────────────────
+function Blog() {
+  const [ref, vis] = useReveal(0.15);
+  return (
+    <section id="blog" ref={ref} style={{ maxWidth: 1180, margin: "0 auto", padding: "100px 48px" }}>
+      <p style={{
+        fontFamily: FONT, fontSize: 13, fontWeight: 600, color: C.accent,
+        letterSpacing: "0.02em", margin: "0 0 12px",
+      }}>Blog</p>
+      <h2 style={{
+        fontFamily: HEADING, fontSize: "clamp(28px, 4vw, 40px)",
+        fontWeight: 700, letterSpacing: "-0.03em", color: C.text,
+        margin: "0 0 20px", lineHeight: 1.15,
+      }}>
+        Insights for modern contractors.
+      </h2>
+      <p style={{
+        fontFamily: FONT, fontSize: 16, fontWeight: 400, color: C.muted,
+        margin: "0 0 48px", lineHeight: 1.6, letterSpacing: "-0.01em",
+        maxWidth: 720,
+      }}>
+        Learn how AI is transforming construction estimation, takeoffs, and code compliance.
+      </p>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 24 }}>
+        {articles.map((article, i) => (
+          <Link
+            key={article.slug}
+            to={`/blog/${article.slug}`}
+            style={{
+              textDecoration: "none",
+              padding: "28px 26px", borderRadius: 14,
+              border: `1px solid ${C.border}`, background: C.surface,
+              transition: "all 0.3s ease",
+              opacity: vis ? 1 : 0,
+              transform: vis ? "translateY(0)" : "translateY(20px)",
+              transitionDelay: `${i * 0.06}s`,
+              display: "flex", flexDirection: "column",
+            }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.boxShadow = "0 4px 20px rgba(45,91,255,0.08)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
+              <span style={{
+                fontFamily: FONT, fontSize: 11, fontWeight: 600, color: C.accent,
+                background: C.accentSoft, padding: "3px 10px", borderRadius: 100,
+              }}>{article.category}</span>
+              <span style={{ fontFamily: FONT, fontSize: 11, color: C.subtle }}>{article.readTime}</span>
+            </div>
+            <h3 style={{
+              fontFamily: HEADING, fontSize: 18, fontWeight: 600,
+              letterSpacing: "-0.02em", color: C.text,
+              margin: "0 0 10px", lineHeight: 1.3,
+            }}>{article.title}</h3>
+            <p style={{
+              fontFamily: FONT, fontSize: 13.5, fontWeight: 400,
+              color: C.muted, lineHeight: 1.55, letterSpacing: "-0.01em",
+              margin: 0, flex: 1,
+            }}>{article.description}</p>
+            <span style={{
+              fontFamily: FONT, fontSize: 13, fontWeight: 600, color: C.accent,
+              marginTop: 18, display: "inline-flex", alignItems: "center", gap: 4,
+            }}>Read article →</span>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function Bildrix() {
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Bildrix",
+    url: "https://bildrix.com",
+    description: "AI Construction Intelligence Platform — blueprint reading, autonomous takeoffs, smart estimation, and automated code compliance.",
+  };
+
   return (
     <div style={{ background: C.bg, minHeight: "100vh" }}>
+      <Helmet>
+        <title>Bildrix — AI Construction Intelligence Platform</title>
+        <meta name="description" content="Bildrix reads construction blueprints, extracts material quantities, and generates cost estimates in seconds. AI-powered takeoffs, smart estimation, and automated code compliance checking for contractors." />
+        <link rel="canonical" href="https://bildrix.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://bildrix.com/" />
+        <meta property="og:title" content="Bildrix — AI Construction Intelligence Platform" />
+        <meta property="og:description" content="Upload blueprints, get instant takeoffs and cost estimates. Bildrix uses AI to read construction plans with 98% accuracy — 11× faster than manual methods." />
+        <meta property="og:image" content="https://bildrix.com/hero.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Bildrix — AI Construction Intelligence Platform" />
+        <meta name="twitter:description" content="Upload blueprints, get instant takeoffs and cost estimates. Bildrix uses AI to read construction plans with 98% accuracy — 11× faster than manual methods." />
+        <script type="application/ld+json">{JSON.stringify(orgJsonLd)}</script>
+      </Helmet>
       <style>{`
         @import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
@@ -821,6 +919,7 @@ export default function Bildrix() {
       <Product />
       <HowItWorks />
       <PlatformHighlights />
+      <Blog />
       <CTA />
       <Footer />
     </div>

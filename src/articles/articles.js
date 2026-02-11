@@ -1,0 +1,48 @@
+// Article metadata registry — used by blog listing and article pages
+export const articles = [
+    {
+        slug: "ai-construction-takeoff-software",
+        title: "What Is AI Construction Takeoff Software? The Complete Guide for 2026",
+        description: "Discover how AI construction takeoff software automates material quantity extraction from blueprints, saving contractors time and reducing estimating errors.",
+        keywords: "AI construction takeoff software, automated takeoff, construction AI, material takeoff automation",
+        date: "2026-02-10",
+        readTime: "8 min read",
+        category: "Guide",
+    },
+    {
+        slug: "how-ai-reads-construction-blueprints",
+        title: "How AI Reads Construction Blueprints: Computer Vision for Contractors",
+        description: "Learn how computer vision technology processes architectural drawings, detecting dimensions, materials, and room classifications with 98% accuracy.",
+        keywords: "AI blueprint reading, computer vision construction, blueprint analysis AI, architectural drawing AI",
+        date: "2026-02-09",
+        readTime: "7 min read",
+        category: "Technology",
+    },
+    {
+        slug: "reduce-construction-estimating-errors-with-ai",
+        title: "5 Ways to Reduce Construction Estimating Errors with AI in 2026",
+        description: "Construction estimating errors cost contractors thousands. Learn how AI eliminates common mistakes in material takeoffs, cost estimation, and bid preparation.",
+        keywords: "construction estimating errors, AI estimation, construction cost estimation AI, reduce estimating mistakes",
+        date: "2026-02-08",
+        readTime: "6 min read",
+        category: "Best Practices",
+    },
+    {
+        slug: "automated-material-takeoff-vs-manual-takeoff",
+        title: "Automated Material Takeoff vs Manual Takeoff: Why Contractors Are Switching",
+        description: "Compare automated and manual material takeoffs side-by-side. See how AI-powered takeoff software delivers 11× faster results with better accuracy.",
+        keywords: "automated material takeoff, manual takeoff comparison, material quantity takeoff, takeoff software",
+        date: "2026-02-07",
+        readTime: "7 min read",
+        category: "Comparison",
+    },
+    {
+        slug: "ai-building-code-compliance-checking",
+        title: "AI Building Code Compliance: How to Catch Issues Before Permitting",
+        description: "AI-powered plan review catches code compliance issues before you submit for permits. Reduce revision cycles and achieve first-time approvals.",
+        keywords: "AI building code compliance, automated code checking, construction permit AI, plan review automation",
+        date: "2026-02-06",
+        readTime: "6 min read",
+        category: "Compliance",
+    },
+];
