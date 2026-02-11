@@ -10,10 +10,10 @@ import { articles } from "./src/articles/articles.js";
    No templates. No generic buttons. No pricing.
    ═══════════════════════════════════════════════════════════════ */
 
-const FONT = `'General Sans', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif`;
-const HEADING = `'Outfit', 'Nunito', 'SF Pro Rounded', sans-serif`;
-const MONO = `'SF Mono', 'Fira Code', 'JetBrains Mono', monospace`;
-const C = {
+export const FONT = `'General Sans', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif`;
+export const HEADING = `'Outfit', 'Nunito', 'SF Pro Rounded', sans-serif`;
+export const MONO = `'SF Mono', 'Fira Code', 'JetBrains Mono', monospace`;
+export const C = {
   bg: "#FAFAF8",
   surface: "#FFFFFF",
   text: "#1A1A1A",
@@ -28,7 +28,7 @@ const C = {
 };
 
 // ─── Intersection Observer Hook ─────────────────────────────────
-function useReveal(threshold = 0.15) {
+export function useReveal(threshold = 0.15) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -65,7 +65,7 @@ function CountUp({ target, suffix = "", inView }) {
 }
 
 // ─── NAVIGATION ─────────────────────────────────────────────────
-function Nav() {
+export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40);
@@ -92,31 +92,36 @@ function Nav() {
         height: 64, display: "flex", alignItems: "center", justifyContent: "space-between",
       }}>
         {/* Logo */}
-        <a href="#" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 9 }}>
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-            <rect width="26" height="26" rx="6" fill={C.dark} />
-            <path d="M7 8h5.5c2.5 0 4 1.2 4 3.2 0 1.5-.9 2.5-2.2 2.9l2.7 3.9h-2.8l-2.3-3.5H9.3v3.5H7V8zm2.3 4.8h3c1.2 0 1.9-.6 1.9-1.5s-.7-1.5-1.9-1.5h-3v3z" fill="#fff" />
-          </svg>
+        <Link to="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 9 }}>
+          <img src="/logo.png" alt="Bildrix" width="26" height="26" style={{ borderRadius: 6 }} />
           <span style={{
             fontFamily: FONT, fontSize: 18, fontWeight: 700,
             letterSpacing: "-0.04em", color: C.text,
           }}>
             Bildrix
           </span>
-        </a>
+        </Link>
 
         {/* Links */}
         <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
-          {["Product", "How it works", "About"].map((t) => (
+          {["Product", "How it works"].map((t) => (
             <a key={t} href={`#${t.toLowerCase().replace(/\s/g, "-")}`} style={linkStyle}
               onMouseEnter={e => e.target.style.color = C.text}
               onMouseLeave={e => e.target.style.color = C.muted}
             >{t}</a>
           ))}
+          <Link to="/about" style={linkStyle}
+            onMouseEnter={e => e.target.style.color = C.text}
+            onMouseLeave={e => e.target.style.color = C.muted}
+          >About</Link>
           <a href="#blog" style={linkStyle}
             onMouseEnter={e => e.target.style.color = C.text}
             onMouseLeave={e => e.target.style.color = C.muted}
           >Blog</a>
+          <Link to="/contact" style={linkStyle}
+            onMouseEnter={e => e.target.style.color = C.text}
+            onMouseLeave={e => e.target.style.color = C.muted}
+          >Contact</Link>
           <a href="https://calendly.com/umairjz/30min" target="_blank" rel="noopener noreferrer" style={{
             textDecoration: "none", fontFamily: FONT,
             fontSize: 14, fontWeight: 600, letterSpacing: "-0.01em",
@@ -764,7 +769,13 @@ function CTA() {
 }
 
 // ─── FOOTER ─────────────────────────────────────────────────────
-function Footer() {
+export function Footer() {
+  const footerLinkStyle = {
+    textDecoration: "none", fontFamily: FONT,
+    fontSize: 12.5, fontWeight: 450, color: C.subtle,
+    letterSpacing: "-0.01em", transition: "color 0.2s",
+  };
+
   return (
     <footer style={{
       borderTop: `1px solid ${C.border}`,
@@ -774,23 +785,28 @@ function Footer() {
         maxWidth: 1180, margin: "0 auto",
         display: "flex", justifyContent: "space-between", alignItems: "center",
       }}>
-        <span style={{
+        <Link to="/" style={{
           fontFamily: FONT, fontSize: 13.5, fontWeight: 600,
           letterSpacing: "-0.02em", color: C.subtle,
-        }}>
-          Bildrix
-        </span>
+          textDecoration: "none",
+        }}>Bildrix</Link>
         <div style={{ display: "flex", gap: 28 }}>
-          {["Product", "About", "Blog", "Privacy", "Terms"].map((t) => (
-            <a key={t} href={t === "Blog" ? "#blog" : "#"} style={{
-              textDecoration: "none", fontFamily: FONT,
-              fontSize: 12.5, fontWeight: 450, color: C.subtle,
-              letterSpacing: "-0.01em", transition: "color 0.2s",
-            }}
-              onMouseEnter={e => e.target.style.color = C.text}
-              onMouseLeave={e => e.target.style.color = C.subtle}
-            >{t}</a>
-          ))}
+          <a href="/#product" style={footerLinkStyle}
+            onMouseEnter={e => e.target.style.color = C.text}
+            onMouseLeave={e => e.target.style.color = C.subtle}
+          >Product</a>
+          <Link to="/about" style={footerLinkStyle}
+            onMouseEnter={e => e.target.style.color = C.text}
+            onMouseLeave={e => e.target.style.color = C.subtle}
+          >About</Link>
+          <a href="/#blog" style={footerLinkStyle}
+            onMouseEnter={e => e.target.style.color = C.text}
+            onMouseLeave={e => e.target.style.color = C.subtle}
+          >Blog</a>
+          <Link to="/contact" style={footerLinkStyle}
+            onMouseEnter={e => e.target.style.color = C.text}
+            onMouseLeave={e => e.target.style.color = C.subtle}
+          >Contact</Link>
         </div>
         <span style={{
           fontFamily: FONT, fontSize: 12, color: C.subtle,
