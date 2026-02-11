@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { articles } from "./articles/articles.js";
@@ -36,6 +37,10 @@ export default function ArticlePage() {
     const { slug } = useParams();
     const meta = articles.find((a) => a.slug === slug);
     const ContentComponent = articleComponents[slug];
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [slug]);
 
     if (!meta || !ContentComponent) {
         return (
