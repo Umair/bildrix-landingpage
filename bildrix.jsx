@@ -105,7 +105,7 @@ export function Nav() {
         {/* Links */}
         <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
           {["Product", "How it works"].map((t) => (
-            <a key={t} href={`#${t.toLowerCase().replace(/\s/g, "-")}`} style={linkStyle}
+            <a key={t} href={`/#${t.toLowerCase().replace(/\s/g, "-")}`} style={linkStyle}
               onMouseEnter={e => e.target.style.color = C.text}
               onMouseLeave={e => e.target.style.color = C.muted}
             >{t}</a>
@@ -114,7 +114,7 @@ export function Nav() {
             onMouseEnter={e => e.target.style.color = C.text}
             onMouseLeave={e => e.target.style.color = C.muted}
           >About</Link>
-          <a href="#blog" style={linkStyle}
+          <a href="/#blog" style={linkStyle}
             onMouseEnter={e => e.target.style.color = C.text}
             onMouseLeave={e => e.target.style.color = C.muted}
           >Blog</a>
